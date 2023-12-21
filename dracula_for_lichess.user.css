@@ -1,0 +1,615 @@
+/* ==UserStyle==
+@name           Dracula for Lichess
+@namespace      dracula/lichess
+@version        0.1.0
+@description    Dark mode for lichess.org
+@license        MIT License
+@author         Jonathan Scholbach
+@updateURL      https://github.com/dracula/lichess/raw/master/dracula_for_lichess.user.css
+@preprocessor   stylus
+==/UserStyle== */
+@-moz-document domain("lichess.org") {
+  :root {
+    /* Taken  from https://draculatheme.com/contribute */
+    --dracula-bg: #282a36;
+    --dracula-current: #44475a;
+    --dracula-comment: #6272a4;
+    --dracula-fg: #f8f8f2;
+    --dracula-purple: #bd93f9;
+    --dracula-pink: #ff79c6;
+    --dracula-green: #50fa7b;
+    --dracula-orange: #ffb86c;
+    --dracula-yellow: #f1fa8c;
+
+    /* Semantic Aliases */
+    --color-dark: var(--dracula-bg);
+    --color-dim: var(--dracula-current);
+    --color-bright: var(--dracula-comment);
+    --color-white: var(--dracula-fg);
+    --color-primary: var(--dracula-purple);
+    --color-primary-transparent: #bd93f9aa;
+    --color-highlight: var(--dracula-orange);
+    --color-alert: var(--dracula-pink);
+    --color-ok: var(--dracula-green);
+
+    --background: var(--color-dark);
+    --color: var(--color-white);
+  }
+
+  /************************
+  *    GLOBAL ELEMENTS    *
+  /***********************/
+  html,
+  body,
+  main,
+  #main-wrap,
+  header,
+  div,
+  fill,
+  input,
+  select,
+  select option,
+  aside,
+  dialog,
+  button,
+  span {
+    background: var(--background) !important;
+    color: var(--color) !important;
+  }
+
+  a,
+  .button-link,
+  a.button.button-empty {
+    color: var(--color-primary);
+  }
+
+  a.button.button-empty,
+  a.button.button-empty:hover {
+    background: var(--background) !important;
+    box-shadow: none !important;
+    border: none;
+  }
+
+  a:hover,
+  a.button.button-empty:hover,
+  select option:hover {
+    color: var(--color-highlight) !important;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--color-primary) !important;
+  }
+
+  button.disabled,
+  button.disabled *,
+  button.disabled:before {
+    background: var(--color-dim) !important;
+  }
+
+  .btn-rack__btn.active,
+  .button.active,
+  .data-count::after,
+  .unread {
+    background-color: var(--color-alert) !important;
+    color: var(--color-dark) !important;
+    text-shadow: none !important;
+  }
+
+  .cmn-toggle:checked + label {
+    background: var(--color-ok);
+  }
+
+  .cmn-toggle--subtle:not(:checked) + label {
+    background: var(--color-bright);
+  }
+
+  @keyframes spinner-color {
+    0%,
+    100% {
+      stroke: var(--color-primary);
+    }
+    25% {
+      stroke: var(--color-alert);
+    }
+    50% {
+      stroke: var(--dracula-yellow);
+    }
+    75% {
+      stroke: var(--color-ok);
+    }
+  }
+
+  .white .spinner path {
+    stroke: var(--color-primary);
+  }
+
+  /**
+  /* NAVIGATION */
+  /**/
+  header {
+    /* z-index is necessary here, because of the z-index on .time */
+    z-index: 2;
+  }
+
+  header a {
+    color: var(--color-bright) !important;
+  }
+
+  h1.site-title a {
+    color: var(--color-primary) !important;
+  }
+
+  h1.site-title a:hover {
+    color: var(--color-highlight) !important;
+  }
+
+  h1.site-title a span {
+    color: var(--color-dim) !important;
+  }
+
+  div[role='group'],
+  #topnav section a:hover,
+  #topnav section:has(div[role='group']:hover) a {
+    border-left-color: var(--color-primary) !important;
+  }
+
+  #topnav section:has(div[role='group']:hover) > a,
+  #topnav section:has(div[role='group']:hover),
+  #topnav section a:hover,
+  #topnav section a:hover span {
+    background: var(--color-dim) !important;
+    color: var(--color-primary) !important;
+  }
+
+  div[role='group'] a:hover {
+    background: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .site_notification {
+    z-index: 1;
+  }
+
+  .site_notification.new,
+  .site_notification.new * {
+    background: var(--color-dim) !important;
+  }
+
+  .site_notification:hover,
+  .site_notification:hover * {
+    background: var(--color-bright) !important;
+  }
+
+  i:before,
+  .utitle {
+    color: var(--color-primary) !important;
+  }
+
+  bad {
+    color: var(--color-alert) !important;
+  }
+
+  good {
+    color: var(--color-ok) !important;
+  }
+
+  div#friend_box {
+    border: 2px solid var(--color-dim);
+  }
+
+  .friend_box_title {
+    background: var(--background) !important;
+    color: var(--color) !important;
+  }
+
+  .game__meta,
+  .mchat,
+  .mchat__content discussion,
+  .round__app__table {
+    background: var(--background);
+    border: 1px solid var(--color-dim);
+  }
+
+  /************************
+  *      LOBBY VIEW       *
+  /***********************/
+  .lobby__start div,
+  .lobby__start button,
+  .lobby__spotlights a,
+  .lobby__spotlights a * {
+    background: var(--color-dim) !important;
+    color: var(--color) !important;
+  }
+
+  .ublog-post-card {
+    background: var(--background) !important;
+    color: var(--color) !important;
+  }
+
+  .lobby__timeline div:hover a {
+    background: var(--background) !important;
+    color: var(--color-bright) !important;
+  }
+
+  .lobby__box,
+  .lobby__spotlights,
+  .ublog-post-card,
+  .lobby__feed,
+  .lobby__support a,
+  .lobby__app__content {
+    box-shadow: none !important;
+  }
+
+  .lobby__start button:hover,
+  .lobby__support a:hover *,
+  .lobby__support a:hover .lobby__support__text,
+  .lobby__spotlights a:hover,
+  .lobby__spotlights a:hover * {
+    background: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .lobby__support a,
+  .lobby__support a * {
+    background: var(--color-dim) !important;
+  }
+
+  .lobby__support a:hover,
+  .lobby__support a:hover * {
+    background: var(--color-primary) !important;
+  }
+
+  .lobby__support a:hover i:before,
+  .lobby__spotlights a:hover i:before {
+    color: var(--background) !important;
+  }
+
+  .lobby__timeline div a:hover {
+    color: var(--color-primary) !important;
+  }
+
+  div.lobby__app div.tabs-horiz span.active,
+  div.lobby__app div.tabs-horiz span:hover,
+  .analyse__underboard__menu > span.active {
+    border-bottom-color: var(--color-primary) !important;
+  }
+
+  div.lobby__app__content div {
+    border-color: var(--color-dim) !important;
+  }
+
+  div.lobby__app__content div:hover,
+  div.lobby__app__content div:hover div {
+    background: var(--color-dim) !important;
+  }
+
+  .lobby__streams .stream.highlight strong {
+    color: var(--color-primary) !important;
+  }
+
+  main.lobby .lobby__tournaments table tr:nth-child(even) *,
+  main.lobby .lobby__box__content table tr:nth-child(even) * {
+    background: var(--color-dim) !important;
+  }
+
+  .daily-feed__updates {
+    border-left-color: var(--color-primary) !important;
+  }
+
+  .daily-feed__update > i {
+    border: 3px solid var(--color-primary) !important;
+    background-color: var(--color-dim) !important;
+  }
+
+  .daily-feed__update__day {
+    color: var(--color-primary) !important;
+  }
+
+  /************************
+  *       ROUND VIEW       *
+  /***********************/
+  #zenzone a#zentog,
+  #zenzone a#zentog:before {
+    background: var(--color-dim) !important;
+  }
+
+  .mchat__tab.mchat__tab-active,
+  .mchat__tab.mchat__tab-active * {
+    background: var(--color-dim) !important;
+  }
+
+  .mchat__tab input:checked {
+    border-color: var(--color-ok) !important;
+  }
+
+  .fbt:hover,
+  .fbt:hover *,
+  .fbt:hover:before {
+    background: var(--color-highlight) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .fbt,
+  .fbt:before {
+    background: var(--background);
+    color: var(--color);
+  }
+
+  .rcontrols .rematch-decline,
+  rm6 .buttons,
+  .rclock .time,
+  .round__app__table,
+  .context-streamer,
+  .game__meta,
+  .mchat,
+  .crosstable {
+    box-shadow: none !important;
+  }
+
+  div.crosstable__users {
+    background: var(--background);
+    border: 1px solid var(--color-dim);
+  }
+
+  div.crosstable .current a {
+    background: var(--color-primary);
+    color: var(--color-dark);
+  }
+
+  .crosstable .win,
+  .crosstable .loss {
+    color: var(--color-dark) !important;
+  }
+
+  .crosstable .win {
+    background: var(--color-ok) !important;
+  }
+
+  .crosstable .loss {
+    background: var(--color-alert) !important;
+  }
+
+  move:hover,
+  move:hover san {
+    background: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .rclock-top .time,
+  .time {
+    background-color: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+    z-index: 1;
+  }
+
+  index,
+  move,
+  rm6,
+  l4x,
+  l4x,
+  i5z {
+    background: var(--background) !important;
+    color: var(--color) !important;
+  }
+
+  kwdb.alt {
+    background-color: var(--color-dim) !important;
+  }
+
+  kwdb:hover {
+    background: var(--color-primary-transparent) !important;
+    color: var(--color-dark) !important;
+  }
+
+  /************************
+  *     ANALYSIS VIEW
+  /***********************/
+  div.analyse__underboard__menu span:hover {
+    background: var(--color-dim) !important;
+  }
+
+  *[stroke='#003088'] {
+    stroke: var(--dracula-pink);
+    opacity: 0.7;
+  }
+
+  *[fill='#3291ff'],
+  #arrowhead-pb path {
+    fill: var(--dracula-pink) !important;
+  }
+
+  *[stroke='#15781B'] {
+    stroke: var(--dracula-green) !important;
+    opacity: 0.7;
+  }
+
+  /************************
+  *         BOARD         *
+  /***********************/
+  cg-board {
+    background-image: url('https://raw.githubusercontent.com/jonathan-scholbach/dracula-lichess/master/images/board.svg') !important;
+  }
+
+  square.check {
+    background: radial-gradient(
+      ellipse at center,
+
+      var(--color-alert) 0%,
+
+      var(--color-alert) 25%,
+
+      rgba(169, 0, 0, 0) 89%,
+
+      rgba(158, 0, 0, 0) 100%
+    );
+  }
+
+  square.last-move {
+    background: var(--color-primary);
+    opacity: 40%;
+  }
+
+  square.current-premove {
+    background: var(--color-highlight) !important;
+    opacity: 60%;
+  }
+
+  square.selected {
+    background: var(--color-ok) !important;
+    opacity: 60%;
+  }
+
+  /************************
+  *      PUZZLE VIEW      *
+  /***********************/
+  .tview2 move.current {
+    border-color: var(--color-primary);
+  }
+
+  .puzzle__tools,
+  .puzzle__side__metas,
+  .puzzle__side__theme,
+  .puzzle__side__replay,
+  .puzzle__side__config,
+  .puzzle__side__user,
+  group.radio {
+    box-shadow: none;
+    border: 2px solid var(--color-dim);
+  }
+
+  .puzzle__side__metas div:before {
+    color: var(--color-primary) !important;
+  }
+
+  .puzzle__moves move.fail glyph {
+    color: var(--color-alert);
+  }
+
+  .puzzle__feedback {
+    background: var(--background) !important;
+    border-style: solid;
+    border-width: 2px;
+  }
+
+  .puzzle__feedback.play {
+    border-color: var(--color-primary) !important;
+  }
+
+  .puzzle__feedback.good,
+  .puzzle__feedback.after {
+    border-color: var(--color-ok) !important;
+  }
+
+  .puzzle__vote .vote.vote-down {
+    color: var(--color-alert) !important;
+  }
+
+  .puzzle__vote .vote.vote-up {
+    color: var(--color-ok) !important;
+  }
+
+  .puzzle__feedback.good .icon {
+    color: var(--color-ok) !important;
+  }
+
+  .puzzle__feedback.fail {
+    border-color: var(--color-alert) !important;
+  }
+
+  .puzzle__feedback.fail .icon {
+    color: var(--color-alert) !important;
+  }
+
+  .puzzle__session .result-false {
+    background: var(--color-alert) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .puzzle__session .result-true {
+    background: var(--color-ok) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .puzzle__session .result-cursor.current {
+    background: var(--color-dim) !important;
+  }
+
+  /************************
+  *      LEARN VIEW      *
+  /***********************/
+  .learn-stages .stage.future,
+  .learn-stages .stage.future * {
+    background: var(--color-alert);
+    color: var(--color-dark);
+  }
+
+  .learn-stages .stage.ongoing,
+  .learn-stages .stage.ongoing *,
+  .learn__screen .buttons .next,
+  .learn__table .progress a.active,
+  .learn__table .progress a.active *,
+  .learn__side-map .categ.active > h2,
+  .learn__side-map .stage.active,
+  .learn__side-map .stage.active *,
+  .learn__side-map .stage.active img,
+  .learn__side-map .stage.future img {
+    background: var(--color-bright) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .learn__table .progress a.done,
+  .learn__table .progress a.done *,
+  .learn__side-map .stage.done img {
+    background: var(--color-ok) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .learn__side-map a.stage:hover,
+  .learn__side-map a.stage:hover * {
+    background: var(--color-primary) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .learn__table .progress a.done i:before {
+    color: var(--color-dark) !important;
+  }
+
+  .learn__screen .buttons .back {
+    background: var(--background);
+    border: 1px solid var(--color-dim);
+  }
+
+  div.learn__table {
+    border: 2px solid var(--color-primary);
+  }
+
+  /************************
+  *      WATCH VIEW      *
+  /***********************/
+  .tv-channel.best > span::before {
+    color: var(--color-highlight);
+  }
+
+  .tv-channel > span:before {
+    color: var(--color-primary);
+  }
+
+  /************************
+  *    COMMUNITY VIEW     *
+  /***********************/
+  .community__leaders .leaderboards h2,
+  .community__leaders .leaderboards h2 a {
+    background: var(--color-bright) !important;
+    color: var(--color-dark) !important;
+  }
+
+  .community__leaders .leaderboards .user-top {
+    border-color: var(--color-dim) !important;
+  }
+
+  .community__leaders .leaderboards .user-top ol li:nth-child(even) *,
+  .community__leaders .leaderboards .user-top ol li:nth-child(even) {
+    background: var(--color-dim) !important;
+  }
+}
